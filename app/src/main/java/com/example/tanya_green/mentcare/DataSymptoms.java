@@ -1,7 +1,8 @@
 package com.example.tanya_green.mentcare;
 import java.util.*;
+import java.io.Serializable;
 
-public class DataSymptoms {
+public class DataSymptoms implements Serializable {
 
     private Map<Calendar, Map<String, Integer>> data;
 
