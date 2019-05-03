@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
-
+import android.view.View;
 import java.util.ArrayList;
 
 import im.dacer.androidcharts.LineView;
@@ -35,4 +35,6 @@ public class GraphicsActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    public void onCheckboxClicked(View view) {}
 }

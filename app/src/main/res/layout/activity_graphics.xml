@@ -12,19 +12,31 @@
         android:layout_height="match_parent">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
     <view
         android:layout_width="wrap_content"
         android:layout_height="300dp"
         class="im.dacer.androidcharts.LineView"
         android:id="@+id/line_view" />
-    <Button
-        android:id="@+id/navButton"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Здесь есть графики" />
+        <CheckBox android:id="@+id/sleepCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Качество сна"
+            android:textSize="26sp"
+            android:onClick="onCheckboxClicked"/>
+        <CheckBox android:id="@+id/appetiteCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Аппетит"
+            android:textSize="26sp"
+            android:onClick="onCheckboxClicked"/>
+        <CheckBox android:id="@+id/moodCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Настроение"
+            android:textSize="26sp"
+            android:onClick="onCheckboxClicked"/>
     </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
