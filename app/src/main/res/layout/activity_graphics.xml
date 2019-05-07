@@ -14,11 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-    <view
-        android:layout_width="wrap_content"
-        android:layout_height="300dp"
-        class="im.dacer.androidcharts.LineView"
-        android:id="@+id/line_view" />
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:id="@+id/graph" />
         <CheckBox android:id="@+id/sleepCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

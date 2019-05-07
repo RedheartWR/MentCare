@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         appetiteSeekBar = (SeekBar) findViewById(R.id.appetiteSeekBar);
         moodSeekBar = (SeekBar) findViewById(R.id.moodSeekBar);
 
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("person.dat")))
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path)))
         {
             mDataSymptoms = (DataSymptoms) ois.readObject();
             Toast.makeText(getApplicationContext(),
