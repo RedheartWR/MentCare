@@ -1,5 +1,6 @@
 package com.example.tanya_green.mentcare;
 
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     int mCurrentDay;
     int mCurrentMonth;
     int mCurrentYear;
-    String path = "data.ser";
+    String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES) + "/" + "data.ser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +56,14 @@ public class MainActivity extends AppCompatActivity {
         appetiteSeekBar = (SeekBar) findViewById(R.id.appetiteSeekBar);
         moodSeekBar = (SeekBar) findViewById(R.id.moodSeekBar);
 
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path)))
+        try
         {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
             mDataSymptoms = (DataSymptoms) ois.readObject();
             Toast.makeText(getApplicationContext(),
                     "Data was read",
                     Toast.LENGTH_SHORT).show();
+            ois.close();
         }
         catch(Exception ex){
             mDataSymptoms = new DataSymptoms();
@@ -126,12 +129,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateFile(){
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path)))
+        try
         {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));
             oos.writeObject(mDataSymptoms);
+            oos.close();
+            Toast.makeText(getApplicationContext(),
+                    "Сохранено в файл",
+                    Toast.LENGTH_SHORT).show();
         }
         catch(Exception ex){
-
+            Toast.makeText(getApplicationContext(),
+                    ex.toString(),
+                    Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -14,28 +14,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:id="@+id/sleepText"
+            android:text="Качество сна" />
         <com.jjoe64.graphview.GraphView
             android:layout_width="match_parent"
             android:layout_height="200dip"
-            android:id="@+id/graph" />
-        <CheckBox android:id="@+id/sleepCheckBox"
-            android:layout_width="wrap_content"
+            android:id="@+id/sleepGraph" />
+        <TextView
             android:layout_height="wrap_content"
-            android:text="Качество сна"
-            android:textSize="26sp"
-            android:onClick="onCheckboxClicked"/>
-        <CheckBox android:id="@+id/appetiteCheckBox"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:id="@+id/appetiteText"
+            android:text="Аппетит" />
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:id="@+id/appetiteGraph" />
+        <TextView
             android:layout_height="wrap_content"
-            android:text="Аппетит"
-            android:textSize="26sp"
-            android:onClick="onCheckboxClicked"/>
-        <CheckBox android:id="@+id/moodCheckBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Настроение"
-            android:textSize="26sp"
-            android:onClick="onCheckboxClicked"/>
+            android:layout_width="match_parent"
+            android:textAlignment="center"
+            android:id="@+id/moodText"
+            android:text="Настроение" />
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:id="@+id/moodGraph" />
     </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
