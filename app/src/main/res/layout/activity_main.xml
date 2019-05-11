@@ -6,78 +6,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <CalendarView
-            android:id="@+id/calendar_view"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TableRow>
-                <TextView
-                    android:layout_weight="0.5"
-                    android:text="Качество сна"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <SeekBar
-                    android:id="@+id/sleepSeekBar"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:progress="0"
-                    android:max="10" />
-            </TableRow>
-
-            <TableRow>
-                <TextView
-                    android:layout_weight="0.5"
-                    android:text="Аппетит"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <SeekBar
-                    android:id="@+id/appetiteSeekBar"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:progress="0"
-                    android:max="10" />
-            </TableRow>
-            <TableRow>
-            <TextView
-                android:layout_weight="0.5"
-                android:text="Настроение"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <SeekBar
-                android:id="@+id/moodSeekBar"
-                android:layout_weight="1"
+            <CalendarView
+                android:id="@+id/calendar_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:progress="0"
-                android:max="10" />
-        </TableRow>
-        </TableLayout>
-        <Button
-            android:text="Сохранить изменения"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:onClick="saveChanges"/>
-    </LinearLayout>
+                android:layout_height="match_parent" />
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/sleepTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="0.4"
+                        android:text="Качество сна"
+                        android:textColor="@color/dark"
+                        android:textSize="16sp" />
+
+                    <SeekBar
+                        android:id="@+id/sleepSeekBar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.6"
+                        android:max="10"
+                        android:progress="0"
+                        android:progressTint="@color/dark"
+                        android:thumbTint="@color/dark" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/appetiteTextView"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="0.4"
+                        android:text="Аппетит"
+                        android:textColor="@color/dark"
+                        android:textSize="16sp" />
+
+                    <SeekBar
+                        android:id="@+id/appetiteSeekBar"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.6"
+                        android:max="10"
+                        android:progress="0"
+                        android:progressTint="@color/dark"
+                        android:thumbTint="@color/dark" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/moodTextView"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="0.4"
+                        android:text="Настроение"
+                        android:textColor="@color/dark"
+                        android:textSize="16sp" />
+
+                    <SeekBar
+                        android:id="@+id/moodSeekBar"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.6"
+                        android:max="10"
+                        android:progress="0"
+                        android:progressTint="@color/dark"
+                        android:thumbTint="@color/dark" />
+                </TableRow>
+
+                <TableRow>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:id="@+id/button"
+                        android:onClick="saveChanges"
+                        android:shadowColor="@color/main"
+                        android:text="Сохранить изменения"
+                        android:textColor="@color/dark"
+                        android:textSize="20sp" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

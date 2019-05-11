@@ -19,29 +19,38 @@
             android:layout_width="match_parent"
             android:textAlignment="center"
             android:id="@+id/sleepText"
-            android:text="Качество сна" />
+            android:layout_margin="10dp"
+            android:text="Качество сна"
+            android:textColor="@color/dark"/>
         <com.jjoe64.graphview.GraphView
             android:layout_width="match_parent"
             android:layout_height="200dip"
+            android:layout_margin="10dp"
             android:id="@+id/sleepGraph" />
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:textAlignment="center"
             android:id="@+id/appetiteText"
-            android:text="Аппетит" />
+            android:layout_margin="10dp"
+            android:text="Аппетит"
+            android:textColor="@color/dark"/>
         <com.jjoe64.graphview.GraphView
             android:layout_width="match_parent"
             android:layout_height="200dip"
+            android:layout_margin="10dp"
             android:id="@+id/appetiteGraph" />
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:textAlignment="center"
+            android:layout_margin="10dp"
             android:id="@+id/moodText"
-            android:text="Настроение" />
+            android:text="Настроение"
+            android:textColor="@color/dark"/>
         <com.jjoe64.graphview.GraphView
             android:layout_width="match_parent"
+            android:layout_margin="10dp"
             android:layout_height="200dip"
             android:id="@+id/moodGraph" />
     </LinearLayout>

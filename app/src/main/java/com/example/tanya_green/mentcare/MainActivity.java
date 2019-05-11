@@ -1,5 +1,6 @@
 package com.example.tanya_green.mentcare;
 
+import android.graphics.Typeface;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,8 +8,10 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.SeekBar;
 import java.io.*;
@@ -27,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //int titleId = getResources().getIdentifier("action_bar_title", "id","android");
+        //TextView title = (TextView) findViewById(titleId);
+        //title.setTypeface(Typeface.createFromAsset(
+               // getAssets(), "fonts/Rubik-Medium.ttf"));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -55,7 +63,18 @@ public class MainActivity extends AppCompatActivity {
         sleepSeekBar = (SeekBar) findViewById(R.id.sleepSeekBar);
         appetiteSeekBar = (SeekBar) findViewById(R.id.appetiteSeekBar);
         moodSeekBar = (SeekBar) findViewById(R.id.moodSeekBar);
-
+        TextView sleepTextView = findViewById(R.id.sleepTextView);
+        sleepTextView.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Rubik-Medium.ttf"));
+        TextView moodTextView = findViewById(R.id.moodTextView);
+        moodTextView.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Rubik-Medium.ttf"));
+        TextView appetiteTextView = findViewById(R.id.appetiteTextView);
+        appetiteTextView.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Rubik-Medium.ttf"));
+        Button button = findViewById(R.id.button);
+        button.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Rubik-Bold.ttf"));
         try
         {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
@@ -65,10 +84,22 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             ois.close();
         }
-        catch(Exception ex){
+        catch(FileNotFoundException ex){
             mDataSymptoms = new DataSymptoms();
             Toast.makeText(getApplicationContext(),
-                    "Data was created",
+                    "Хранилище создано",
+                    Toast.LENGTH_SHORT).show();
+        }
+        catch(IOException ex){
+            mDataSymptoms = new DataSymptoms();
+            Toast.makeText(getApplicationContext(),
+                    "Ошибка чтения данных",
+                    Toast.LENGTH_SHORT).show();
+        }
+        catch(ClassNotFoundException ex){
+            mDataSymptoms = new DataSymptoms();
+            Toast.makeText(getApplicationContext(),
+                    "Ошибка: еправильный тип данных",
                     Toast.LENGTH_SHORT).show();
         }
         updateCurrentData();
@@ -140,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         }
         catch(Exception ex){
             Toast.makeText(getApplicationContext(),
-                    ex.toString(),
+                    "Ошибка: данные не сохранены в файл",
                     Toast.LENGTH_SHORT).show();
         }
     }
