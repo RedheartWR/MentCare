@@ -26,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
     int mCurrentDay;
     int mCurrentMonth;
     int mCurrentYear;
-    String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES) + "/" + "data.ser";
+    File path;
+
+    //String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES) + "/" + "data.ser";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        path = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "data.ser");
+        path.getParentFile().mkdirs();
         mCalendarView = (CalendarView)findViewById(R.id.calendar_view);
 
         Calendar currentDate = new GregorianCalendar();
@@ -52,11 +55,6 @@ public class MainActivity extends AppCompatActivity {
                 mCurrentMonth = month + 1;
                 mCurrentYear = year;
                 // При выборе любой даты отображаем Toast сообщение с данными о выбранной дате (Год, Месяц, День):
-                Toast.makeText(getApplicationContext(),
-                        "Год: " + year + "\n" +
-                                "Месяц: " + (month + 1) + "\n" +
-                                "День: " + dayOfMonth,
-                        Toast.LENGTH_SHORT).show();
                 updateCurrentData();
             }});
 
@@ -80,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
             mDataSymptoms = (DataSymptoms) ois.readObject();
             Toast.makeText(getApplicationContext(),
-                    "Data was read",
+                    "Данные получены",
                     Toast.LENGTH_SHORT).show();
             ois.close();
         }

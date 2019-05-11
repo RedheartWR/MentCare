@@ -27,6 +27,7 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.text.SimpleDateFormat;
@@ -44,13 +45,16 @@ import java.util.Comparator;
 public class GraphicsActivity extends AppCompatActivity {
 
     DataSymptoms mDataSymptoms;
-    String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES) + "/" + "data.ser";
+    //String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES) + "/" + "data.ser";
+    File path;
     GraphView sleepGraph, moodGraph, appetiteGraph;
     TextView sleepText, moodText, appetiteText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphics);
+        path = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "data.ser");
+        path.getParentFile().mkdirs();
         sleepGraph = findViewById(R.id.sleepGraph);
         moodGraph = findViewById(R.id.moodGraph);
         appetiteGraph = findViewById(R.id.appetiteGraph);
