@@ -5,38 +5,28 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Environment;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView.OnItemSelectedListener;
-
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Comparator;
 
@@ -45,7 +35,6 @@ import java.util.Comparator;
 public class GraphicsActivity extends AppCompatActivity {
 
     DataSymptoms mDataSymptoms;
-    //String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES) + "/" + "data.ser";
     File path;
     GraphView sleepGraph, moodGraph, appetiteGraph;
     TextView sleepText, moodText, appetiteText;
@@ -71,9 +60,6 @@ public class GraphicsActivity extends AppCompatActivity {
         {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
             mDataSymptoms = (DataSymptoms) ois.readObject();
-            Toast.makeText(getApplicationContext(),
-                    "Данные получены",
-                    Toast.LENGTH_SHORT).show();
             ois.close();;
         }
         catch(Exception ex){
@@ -101,6 +87,7 @@ public class GraphicsActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+            finish();
         }
         return true;
     }
@@ -116,7 +103,7 @@ public class GraphicsActivity extends AppCompatActivity {
             Map<Calendar, Integer> graphData = mDataSymptoms.GetSymptomStatistic(symptom);
         if (graphData.isEmpty()) return;
         ArrayList<Integer> formateDates = new ArrayList<>();
-        ArrayList<Date> dateArray = new ArrayList<Date>();
+        ArrayList<Date> dateArray = new ArrayList<>();
         for(Map.Entry<Calendar, Integer> item : graphData.entrySet()){
             Calendar date = (Calendar) item.getKey();
             if (item.getValue() == null) continue;
@@ -184,14 +171,14 @@ public class GraphicsActivity extends AppCompatActivity {
         });
 
         graph.addSeries(series);
+        GridLabelRenderer renderer = graph.getGridLabelRenderer();
+        renderer.setHorizontalLabelsAngle(60);
 
-        // styling series
         series.setColor(Color.GREEN);
         series.setDrawDataPoints(true);
         series.setDataPointsRadius(10);
         series.setThickness(8);
 
-        // custom paint to make a dotted line
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(10);

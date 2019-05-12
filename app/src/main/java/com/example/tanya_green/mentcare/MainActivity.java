@@ -28,21 +28,14 @@ public class MainActivity extends AppCompatActivity {
     int mCurrentYear;
     File path;
 
-    //String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES) + "/" + "data.ser";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //int titleId = getResources().getIdentifier("action_bar_title", "id","android");
-        //TextView title = (TextView) findViewById(titleId);
-        //title.setTypeface(Typeface.createFromAsset(
-               // getAssets(), "fonts/Rubik-Medium.ttf"));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         path = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "data.ser");
         path.getParentFile().mkdirs();
-        mCalendarView = (CalendarView)findViewById(R.id.calendar_view);
-
+        mCalendarView = findViewById(R.id.calendar_view);
         Calendar currentDate = new GregorianCalendar();
         mCurrentMonth = currentDate.get(Calendar.MONTH) + 1;
         mCurrentDay = currentDate.get(Calendar.DATE);
@@ -54,13 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 mCurrentDay = dayOfMonth;
                 mCurrentMonth = month + 1;
                 mCurrentYear = year;
-                // При выборе любой даты отображаем Toast сообщение с данными о выбранной дате (Год, Месяц, День):
                 updateCurrentData();
             }});
 
-        sleepSeekBar = (SeekBar) findViewById(R.id.sleepSeekBar);
-        appetiteSeekBar = (SeekBar) findViewById(R.id.appetiteSeekBar);
-        moodSeekBar = (SeekBar) findViewById(R.id.moodSeekBar);
+        sleepSeekBar = findViewById(R.id.sleepSeekBar);
+        appetiteSeekBar = findViewById(R.id.appetiteSeekBar);
+        moodSeekBar = findViewById(R.id.moodSeekBar);
         TextView sleepTextView = findViewById(R.id.sleepTextView);
         sleepTextView.setTypeface(Typeface.createFromAsset(
                 getAssets(), "fonts/Rubik-Medium.ttf"));
@@ -77,16 +69,10 @@ public class MainActivity extends AppCompatActivity {
         {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path));
             mDataSymptoms = (DataSymptoms) ois.readObject();
-            Toast.makeText(getApplicationContext(),
-                    "Данные получены",
-                    Toast.LENGTH_SHORT).show();
             ois.close();
         }
         catch(FileNotFoundException ex){
             mDataSymptoms = new DataSymptoms();
-            Toast.makeText(getApplicationContext(),
-                    "Хранилище создано",
-                    Toast.LENGTH_SHORT).show();
         }
         catch(IOException ex){
             mDataSymptoms = new DataSymptoms();
@@ -97,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         catch(ClassNotFoundException ex){
             mDataSymptoms = new DataSymptoms();
             Toast.makeText(getApplicationContext(),
-                    "Ошибка: еправильный тип данных",
+                    "Ошибка: неправильный тип данных",
                     Toast.LENGTH_SHORT).show();
         }
         updateCurrentData();
@@ -116,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         {
             Intent intent = new Intent(this, GraphicsActivity.class);
             startActivity(intent);
+            finish();
         }
         return true;
     }
@@ -128,9 +115,6 @@ public class MainActivity extends AppCompatActivity {
         symptoms.put("mood", moodSeekBar.getProgress());
         mDataSymptoms.AddDaySymptoms(date, symptoms);
         updateFile();
-        Toast.makeText(getApplicationContext(),
-                "Сохранено",
-                Toast.LENGTH_SHORT).show();
     }
 
     public void updateCurrentData(){
@@ -164,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             oos.writeObject(mDataSymptoms);
             oos.close();
             Toast.makeText(getApplicationContext(),
-                    "Сохранено в файл",
+                    "Сохранено",
                     Toast.LENGTH_SHORT).show();
         }
         catch(Exception ex){
